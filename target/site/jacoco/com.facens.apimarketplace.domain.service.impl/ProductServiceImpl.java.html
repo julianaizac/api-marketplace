@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">api-marketplace</a> &gt; <a href="index.source.html" class="el_package">com.facens.apimarketplace.domain.service.impl</a> &gt; <span class="el_source">ProductServiceImpl.java</span></div><h1>ProductServiceImpl.java</h1><pre class="source lang-java linenums">package com.facens.apimarketplace.domain.service.impl;
+
+import com.facens.apimarketplace.application.dto.category.CategoryDTO;
+import com.facens.apimarketplace.application.dto.product.ProductDTO;
+import com.facens.apimarketplace.application.dto.product.ProductInsertDTO;
+import com.facens.apimarketplace.application.dto.product.ProductUpdateDTO;
+import com.facens.apimarketplace.application.exception.BadRequestException;
+import com.facens.apimarketplace.domain.factories.ProductFatory;
+import com.facens.apimarketplace.domain.model.Product;
+import com.facens.apimarketplace.domain.model.Stock;
+import com.facens.apimarketplace.domain.repository.ProductRepository;
+import com.facens.apimarketplace.domain.repository.StockRepository;
+import com.facens.apimarketplace.domain.service.CategoryService;
+import com.facens.apimarketplace.domain.service.ProductService;
+import com.facens.apimarketplace.domain.service.StockService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import java.util.UUID;
+
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
+
+@Service
+<span class="fc" id="L30">public class ProductServiceImpl implements ProductService {</span>
+
+    @Autowired
+    private ProductRepository repository;
+
+    @Autowired
+    private CategoryService categoryService;
+
+    @Autowired
+    private StockRepository stockRepository;
+
+<span class="fc" id="L41">    private String notFoundMessage = &quot;Não existe o produto na base de dados.&quot;;</span>
+<span class="fc" id="L42">    private String existingProductdMessage = &quot;Já existe um produto com esse nome na base de dados.&quot;;</span>
+
+    @Override
+    public List&lt;ProductDTO&gt; getProducts() {
+<span class="fc" id="L46">        List&lt;Product&gt; products = repository.findAll();</span>
+<span class="fc" id="L47">        return products.stream().map(ProductFatory::createFromModel).toList();</span>
+    }
+
+    @Override
+    public ProductDTO getProductById(UUID id) {
+<span class="fc" id="L52">        Product product = repository.findById(id).orElseThrow(() -&gt; new BadRequestException(notFoundMessage, BAD_REQUEST));</span>
+<span class="fc" id="L53">        return ProductFatory.createFromModel(product);</span>
+    }
+
+    @Override
+    public ProductDTO getProductByName(String name) {
+<span class="fc" id="L58">        Optional&lt;Product&gt; product = repository.findByName(name);</span>
+<span class="fc" id="L59">        return product.map(ProductFatory::createFromModel).orElse(null);</span>
+    }
+
+    @Override
+    public ProductDTO saveProduct(ProductInsertDTO productInsertDTO) {
+        // Valida se existe algum produto na base de dados com esse nome
+<span class="fc" id="L65">        validateProduct(productInsertDTO.getName());</span>
+
+        // Verifica se existe categoria
+<span class="fc" id="L68">        CategoryDTO categoryDTO = categoryService.getCategoryById(productInsertDTO.getCategoryId());</span>
+
+<span class="fc" id="L70">        Stock stock = new Stock();</span>
+<span class="fc" id="L71">        stock.setAmount(0);</span>
+<span class="fc" id="L72">        stock.setCreationDate(LocalDateTime.now());</span>
+
+<span class="fc" id="L74">        Product product = ProductFatory.createFromInsertDTO(productInsertDTO, categoryDTO);</span>
+
+<span class="fc" id="L76">        stock.setProduct(product);</span>
+<span class="fc" id="L77">        product.setStock(stock);</span>
+
+<span class="fc" id="L79">        Product productSave = repository.save(product);</span>
+<span class="fc" id="L80">        stockRepository.save(stock);</span>
+
+<span class="fc" id="L82">        return ProductFatory.createFromModel(productSave);</span>
+    }
+
+    @Override
+    public ProductDTO updateProductById(UUID id, ProductUpdateDTO productUpdateDTO) {
+<span class="fc" id="L87">        ProductDTO existingProduct  = getProductById(id);</span>
+<span class="fc" id="L88">        Product product = ProductFatory.createFromUpdateDTO(productUpdateDTO, existingProduct);</span>
+<span class="fc" id="L89">        Product productSave = repository.save(product);</span>
+<span class="fc" id="L90">        return ProductFatory.createFromModel(productSave);</span>
+    }
+
+    @Override
+    public void deleteProductById(UUID id) {
+<span class="fc" id="L95">        ProductDTO productDTO = getProductById(id);</span>
+<span class="fc" id="L96">        repository.deleteById(productDTO.getId());</span>
+<span class="fc" id="L97">    }</span>
+
+    public void validateProduct(String name){
+<span class="fc" id="L100">        ProductDTO existingProduct  = getProductByName(name);</span>
+<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        if(existingProduct != null){</span>
+<span class="nc" id="L102">            throw new BadRequestException(existingProductdMessage, BAD_REQUEST);</span>
+        }
+<span class="fc" id="L104">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

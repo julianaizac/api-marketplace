@@ -1,0 +1,6 @@
+com\facens\apimarketplace\domain\service\ProductServiceTest.class
+com\facens\apimarketplace\mocks\MocksCategory.class
+com\facens\apimarketplace\mocks\MocksProduct.class
+com\facens\apimarketplace\ApiMarketplaceApplicationTests.class
+com\facens\apimarketplace\mocks\MocksStock.class
+com\facens\apimarketplace\domain\service\CategoryServiceTest.class

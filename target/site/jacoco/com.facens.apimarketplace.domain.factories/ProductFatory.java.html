@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="pt"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ProductFatory.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">api-marketplace</a> &gt; <a href="index.source.html" class="el_package">com.facens.apimarketplace.domain.factories</a> &gt; <span class="el_source">ProductFatory.java</span></div><h1>ProductFatory.java</h1><pre class="source lang-java linenums">package com.facens.apimarketplace.domain.factories;
+
+import com.facens.apimarketplace.application.dto.category.CategoryDTO;
+import com.facens.apimarketplace.application.dto.product.ProductDTO;
+import com.facens.apimarketplace.application.dto.product.ProductInsertDTO;
+import com.facens.apimarketplace.application.dto.product.ProductUpdateDTO;
+import com.facens.apimarketplace.domain.model.Product;
+
+import java.time.LocalDateTime;
+
+import static java.util.Objects.nonNull;
+
+<span class="nc" id="L13">public class ProductFatory {</span>
+
+    public static Product createFromInsertDTO(ProductInsertDTO productInsertDTO, CategoryDTO categoryDTO){
+<span class="fc" id="L16">        return Product.builder()</span>
+<span class="fc" id="L17">                .name(productInsertDTO.getName())</span>
+<span class="fc" id="L18">                .description(productInsertDTO.getDescription())</span>
+<span class="fc" id="L19">                .price(productInsertDTO.getPrice())</span>
+<span class="fc" id="L20">                .creationDate(LocalDateTime.now())</span>
+<span class="fc" id="L21">                .category(CategoryFatory.createFromCategoryDTO(categoryDTO))</span>
+<span class="fc" id="L22">                .stock(null)</span>
+<span class="fc" id="L23">                .build();</span>
+    }
+
+    public static Product createFromUpdateDTO(ProductUpdateDTO productUpdateDTO, ProductDTO productDTO){
+<span class="fc" id="L27">        return Product.builder()</span>
+<span class="fc" id="L28">                .id(productDTO.getId())</span>
+<span class="pc bpc" id="L29" title="1 of 2 branches missed.">                .name(nonNull(productUpdateDTO.getName()) ? productUpdateDTO.getName() : productDTO.getName())</span>
+<span class="pc bpc" id="L30" title="1 of 2 branches missed.">                .description(nonNull(productUpdateDTO.getDescription()) ? productUpdateDTO.getDescription() : productDTO.getDescription())</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">                .price(nonNull(productUpdateDTO.getPrice()) ? productUpdateDTO.getPrice() : productDTO.getPrice())</span>
+<span class="fc" id="L32">                .category(CategoryFatory.createFromCategoryDTO(productDTO.getCategory()))</span>
+<span class="fc" id="L33">                .stock(StockFatory.createFromStockDTO(productDTO.getStock()))</span>
+<span class="fc" id="L34">                .build();</span>
+    }
+
+    public static ProductDTO createFromModel(Product product){
+<span class="fc" id="L38">        return ProductDTO.builder()</span>
+<span class="fc" id="L39">                .id(product.getId())</span>
+<span class="fc" id="L40">                .name(product.getName())</span>
+<span class="fc" id="L41">                .description(product.getDescription())</span>
+<span class="fc" id="L42">                .price(product.getPrice())</span>
+<span class="fc" id="L43">                .creationDate(product.getCreationDate())</span>
+<span class="fc" id="L44">                .category(CategoryFatory.createFromModel(product.getCategory()))</span>
+<span class="fc" id="L45">                .stock(StockFatory.createFromModel(product.getStock()))</span>
+<span class="fc" id="L46">                .build();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

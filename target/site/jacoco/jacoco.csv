@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+api-marketplace,com.facens.apimarketplace,ApiMarketplaceApplication,5,3,0,0,2,1,1,1,1,1
+api-marketplace,com.facens.apimarketplace.application.controller,ProductController,41,3,0,0,10,1,5,1,5,1
+api-marketplace,com.facens.apimarketplace.application.controller,CategoryController,39,3,0,0,10,1,5,1,5,1
+api-marketplace,com.facens.apimarketplace.application.controller,StockController,24,3,0,0,6,1,3,1,3,1
+api-marketplace,com.facens.apimarketplace.domain.factories,ProductFatory,9,83,3,3,1,25,4,3,1,3
+api-marketplace,com.facens.apimarketplace.domain.factories,CategoryFatory,7,66,2,2,1,23,3,4,1,4
+api-marketplace,com.facens.apimarketplace.domain.factories,StockFatory,22,24,2,0,6,10,3,2,2,2
+api-marketplace,com.facens.apimarketplace.application.exception,DefaultError.DefaultErrorBuilder,36,0,0,0,1,0,6,0,6,0
+api-marketplace,com.facens.apimarketplace.application.exception,DefaultError,173,0,30,0,5,0,27,0,12,0
+api-marketplace,com.facens.apimarketplace.application.exception,BadRequestException,0,5,0,0,0,2,0,1,0,1
+api-marketplace,com.facens.apimarketplace.application.exception,GenericException,0,15,0,0,0,6,0,3,0,3
+api-marketplace,com.facens.apimarketplace.application.exception,ApplicationExceptionHandler,35,3,0,0,4,1,2,1,2,1
+api-marketplace,com.facens.apimarketplace.application.validation,ValidationMessages,3,0,0,0,1,0,1,0,1,0
+api-marketplace,com.facens.apimarketplace.domain.service.impl,StockServiceImpl,46,6,0,0,8,2,4,1,4,1
+api-marketplace,com.facens.apimarketplace.domain.service.impl,CategoryServiceImpl,7,100,1,1,1,23,1,9,0,9
+api-marketplace,com.facens.apimarketplace.domain.service.impl,ProductServiceImpl,7,129,1,1,1,30,1,9,0,9
