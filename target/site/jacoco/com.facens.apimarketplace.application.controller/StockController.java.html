@@ -20,14 +20,14 @@ import java.util.UUID;
 
     @GetMapping
     public ResponseEntity&lt;List&lt;StockDTO&gt;&gt; getStocks(){
-<span class="nc" id="L23">        List&lt;StockDTO&gt; stocks = service.getStocks();</span>
-<span class="nc" id="L24">        return ResponseEntity.ok(stocks);</span>
+<span class="fc" id="L23">        List&lt;StockDTO&gt; stocks = service.getStocks();</span>
+<span class="fc" id="L24">        return ResponseEntity.ok(stocks);</span>
     }
 
     @GetMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;StockDTO&gt; getStockById(@PathVariable UUID id){
-<span class="nc" id="L29">        StockDTO stock = service.getStocksById(id);</span>
-<span class="nc" id="L30">        return ResponseEntity.ok(stock);</span>
+<span class="fc" id="L29">        StockDTO stock = service.getStocksById(id);</span>
+<span class="fc" id="L30">        return ResponseEntity.ok(stock);</span>
     }
 
     @PatchMapping(&quot;/{id}&quot;)

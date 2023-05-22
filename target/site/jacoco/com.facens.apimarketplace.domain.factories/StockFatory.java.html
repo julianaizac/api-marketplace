@@ -20,11 +20,11 @@ import static java.util.Objects.nonNull;
     }
 
     public static Stock createFromModel(StockUpdateDTO stockUpdateDTO, StockDTO existingStock) {
-<span class="nc" id="L23">        return Stock.builder()</span>
-<span class="nc" id="L24">                .id(existingStock.getId())</span>
-<span class="nc bnc" id="L25" title="All 2 branches missed.">                .amount(nonNull(stockUpdateDTO.getAmount()) ? stockUpdateDTO.getAmount() : existingStock.getAmount())</span>
-<span class="nc" id="L26">                .creationDate(existingStock.getCreationDate())</span>
-<span class="nc" id="L27">                .build();</span>
+<span class="fc" id="L23">        return Stock.builder()</span>
+<span class="fc" id="L24">                .id(existingStock.getId())</span>
+<span class="pc bpc" id="L25" title="1 of 2 branches missed.">                .amount(nonNull(stockUpdateDTO.getAmount()) ? stockUpdateDTO.getAmount() : existingStock.getAmount())</span>
+<span class="fc" id="L26">                .creationDate(existingStock.getCreationDate())</span>
+<span class="fc" id="L27">                .build();</span>
     }
 
     public static Stock createFromStockDTO(StockDTO stock) {

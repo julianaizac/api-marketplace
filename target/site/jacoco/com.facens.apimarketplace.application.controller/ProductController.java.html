@@ -21,14 +21,14 @@ import java.util.UUID;
 
     @GetMapping
     public ResponseEntity&lt;List&lt;ProductDTO&gt;&gt; getProducts(){
-<span class="nc" id="L24">        List&lt;ProductDTO&gt; products = service.getProducts();</span>
-<span class="nc" id="L25">        return ResponseEntity.ok(products);</span>
+<span class="fc" id="L24">        List&lt;ProductDTO&gt; products = service.getProducts();</span>
+<span class="fc" id="L25">        return ResponseEntity.ok(products);</span>
     }
 
     @GetMapping(&quot;/{id}&quot;)
     public ResponseEntity&lt;ProductDTO&gt; getProductById(@PathVariable UUID id){
-<span class="nc" id="L30">        ProductDTO product = service.getProductById(id);</span>
-<span class="nc" id="L31">        return ResponseEntity.ok(product);</span>
+<span class="fc" id="L30">        ProductDTO product = service.getProductById(id);</span>
+<span class="fc" id="L31">        return ResponseEntity.ok(product);</span>
     }
 
     @PostMapping

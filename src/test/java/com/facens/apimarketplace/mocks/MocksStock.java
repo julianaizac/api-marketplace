@@ -1,6 +1,7 @@
 package com.facens.apimarketplace.mocks;
 
 import com.facens.apimarketplace.application.dto.stock.StockDTO;
+import com.facens.apimarketplace.application.dto.stock.StockUpdateDTO;
 import com.facens.apimarketplace.domain.model.Stock;
 
 import java.time.LocalDateTime;
@@ -26,6 +27,12 @@ public class MocksStock {
                 .id(stockId)
                 .amount(stockAmount)
                 .creationDate(LocalDateTime.now())
+                .build();
+    }
+
+    public static StockUpdateDTO createStockUpdateDTO(Integer stockAmount) {
+        return StockUpdateDTO.builder()
+                .amount(stockAmount)
                 .build();
     }
 }

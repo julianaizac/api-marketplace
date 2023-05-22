@@ -16,8 +16,7 @@ import org.springframework.test.util.ReflectionTestUtils;
 import java.util.*;
 
 import static com.facens.apimarketplace.mocks.MocksCategory.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -38,7 +37,7 @@ public class CategoryServiceTest {
 
     @DisplayName("Deve buscar categorias")
     @Test
-    void teste(){
+    void whenGetCategoriesThenReturnsEmptyList(){
         when(repository.findAll()).thenReturn(new ArrayList<>());
         List<CategoryDTO> categories = service.getCategories();
         assertEquals(new ArrayList<>(), categories);
@@ -46,7 +45,7 @@ public class CategoryServiceTest {
 
     @DisplayName("Deve buscar categoria por id")
     @Test
-    void teste2(){
+    void whenGetCategoryByIdThenReturnProduct(){
         when(repository.findById(CATEGORY_ID)).thenReturn(
                 Optional.ofNullable(MocksCategory.createCategory(CATEGORY_ID, CATEGORY_NAME, CATEGORY_DESCRIPTION)));
         CategoryDTO category = service.getCategoryById(CATEGORY_ID);
@@ -56,9 +55,9 @@ public class CategoryServiceTest {
 
     @DisplayName("Deve buscar categoria por id e lançar BadRequestException")
     @Test
-    void teste3(){
+    void whenGeCategoryByIdThenThrowBadRequestException(){
         when(repository.findById(CATEGORY_ID)).thenReturn(Optional.empty());
-        BadRequestException exception = Assertions.assertThrows(BadRequestException.class, () -> service.getCategoryById(CATEGORY_ID));
+        BadRequestException exception = assertThrows(BadRequestException.class, () -> service.getCategoryById(CATEGORY_ID));
         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatus());
         verify(repository, times(1)).findById(CATEGORY_ID);
     }
