@@ -3,16 +3,13 @@ package com.facens.apimarketplace.domain.service.impl;
 import com.facens.apimarketplace.application.dto.category.CategoryDTO;
 import com.facens.apimarketplace.application.dto.category.CategoryInsertDTO;
 import com.facens.apimarketplace.application.dto.category.CategoryUpdateDTO;
-import com.facens.apimarketplace.application.dto.product.ProductDTO;
 import com.facens.apimarketplace.application.exception.BadRequestException;
 import com.facens.apimarketplace.domain.factories.CategoryFatory;
-import com.facens.apimarketplace.domain.model.Category;
+import com.facens.apimarketplace.domain.entities.Category;
 import com.facens.apimarketplace.domain.repository.CategoryRepository;
 import com.facens.apimarketplace.domain.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;

@@ -3,7 +3,7 @@ package com.facens.apimarketplace.mocks;
 import com.facens.apimarketplace.application.dto.category.CategoryDTO;
 import com.facens.apimarketplace.application.dto.category.CategoryInsertDTO;
 import com.facens.apimarketplace.application.dto.category.CategoryUpdateDTO;
-import com.facens.apimarketplace.domain.model.Category;
+import com.facens.apimarketplace.domain.entities.Category;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

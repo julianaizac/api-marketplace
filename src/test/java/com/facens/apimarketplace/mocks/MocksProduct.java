@@ -3,7 +3,7 @@ package com.facens.apimarketplace.mocks;
 import com.facens.apimarketplace.application.dto.product.ProductDTO;
 import com.facens.apimarketplace.application.dto.product.ProductInsertDTO;
 import com.facens.apimarketplace.application.dto.product.ProductUpdateDTO;
-import com.facens.apimarketplace.domain.model.Product;
+import com.facens.apimarketplace.domain.entities.Product;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

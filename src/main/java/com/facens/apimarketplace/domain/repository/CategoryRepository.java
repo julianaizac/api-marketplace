@@ -1,6 +1,6 @@
 package com.facens.apimarketplace.domain.repository;
 
-import com.facens.apimarketplace.domain.model.Category;
+import com.facens.apimarketplace.domain.entities.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

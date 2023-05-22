@@ -3,10 +3,9 @@ package com.facens.apimarketplace.domain.factories;
 import com.facens.apimarketplace.application.dto.category.CategoryDTO;
 import com.facens.apimarketplace.application.dto.category.CategoryInsertDTO;
 import com.facens.apimarketplace.application.dto.category.CategoryUpdateDTO;
-import com.facens.apimarketplace.domain.model.Category;
+import com.facens.apimarketplace.domain.entities.Category;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 import static java.util.Objects.nonNull;
 

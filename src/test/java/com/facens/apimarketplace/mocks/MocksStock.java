@@ -2,7 +2,7 @@ package com.facens.apimarketplace.mocks;
 
 import com.facens.apimarketplace.application.dto.stock.StockDTO;
 import com.facens.apimarketplace.application.dto.stock.StockUpdateDTO;
-import com.facens.apimarketplace.domain.model.Stock;
+import com.facens.apimarketplace.domain.entities.Stock;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

@@ -2,9 +2,7 @@ package com.facens.apimarketplace.domain.factories;
 
 import com.facens.apimarketplace.application.dto.stock.StockDTO;
 import com.facens.apimarketplace.application.dto.stock.StockUpdateDTO;
-import com.facens.apimarketplace.domain.model.Stock;
-
-import java.util.Objects;
+import com.facens.apimarketplace.domain.entities.Stock;
 
 import static java.util.Objects.nonNull;
 

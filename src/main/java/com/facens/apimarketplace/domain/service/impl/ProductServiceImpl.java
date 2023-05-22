@@ -6,21 +6,17 @@ import com.facens.apimarketplace.application.dto.product.ProductInsertDTO;
 import com.facens.apimarketplace.application.dto.product.ProductUpdateDTO;
 import com.facens.apimarketplace.application.exception.BadRequestException;
 import com.facens.apimarketplace.domain.factories.ProductFatory;
-import com.facens.apimarketplace.domain.model.Product;
-import com.facens.apimarketplace.domain.model.Stock;
+import com.facens.apimarketplace.domain.entities.Product;
+import com.facens.apimarketplace.domain.entities.Stock;
 import com.facens.apimarketplace.domain.repository.ProductRepository;
 import com.facens.apimarketplace.domain.repository.StockRepository;
 import com.facens.apimarketplace.domain.service.CategoryService;
 import com.facens.apimarketplace.domain.service.ProductService;
-import com.facens.apimarketplace.domain.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 

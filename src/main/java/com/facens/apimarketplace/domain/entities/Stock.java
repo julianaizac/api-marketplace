@@ -1,10 +1,9 @@
-package com.facens.apimarketplace.domain.model;
+package com.facens.apimarketplace.domain.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
 import java.util.UUID;
@@ -15,29 +14,25 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Builder
 @Entity
-@Table(name = "TB_PRODUCT")
+@Table(name = "TB_STOCK")
 @AllArgsConstructor
-public class Product {
+public class Stock {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-    private String name;
-    private String description;
-    private BigDecimal price;
     private LocalDateTime creationDate;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
-    private Category category;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-    private Stock stock;
+    private Integer amount;
+    @OneToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        Product product = (Product) o;
-        return getId() != null && Objects.equals(getId(), product.getId());
+        Stock stock = (Stock) o;
+        return getId() != null && Objects.equals(getId(), stock.getId());
     }
 
     @Override
