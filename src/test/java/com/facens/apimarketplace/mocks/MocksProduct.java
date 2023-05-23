@@ -4,6 +4,7 @@ import com.facens.apimarketplace.application.dto.product.ProductDTO;
 import com.facens.apimarketplace.application.dto.product.ProductInsertDTO;
 import com.facens.apimarketplace.application.dto.product.ProductUpdateDTO;
 import com.facens.apimarketplace.domain.entities.Product;
+import com.facens.apimarketplace.domain.objectvalue.Price;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -23,7 +24,9 @@ public class MocksProduct {
                 .id(productId)
                 .name(productName)
                 .description(productDescription)
-                .price(productPrice)
+                .price(Price.builder()
+                        .price(productPrice)
+                        .build())
                 .creationDate(LocalDateTime.now())
                 .category(MocksCategory.createCategory(categoryId, categoryName, categoryDescription))
                 .stock(MocksStock.createStock(stockId, stockAmount))

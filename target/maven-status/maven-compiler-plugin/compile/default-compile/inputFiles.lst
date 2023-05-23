@@ -26,6 +26,7 @@ D:\Estudo\Faculdade\9_Semestre\EngDeSoftware\Marketplace\api-marketplace\src\mai
 D:\Estudo\Faculdade\9_Semestre\EngDeSoftware\Marketplace\api-marketplace\src\main\java\com\facens\apimarketplace\application\exception\GenericException.java
 D:\Estudo\Faculdade\9_Semestre\EngDeSoftware\Marketplace\api-marketplace\src\main\java\com\facens\apimarketplace\application\dto\category\CategoryInsertDTO.java
 D:\Estudo\Faculdade\9_Semestre\EngDeSoftware\Marketplace\api-marketplace\src\main\java\com\facens\apimarketplace\domain\service\impl\CategoryServiceImpl.java
+D:\Estudo\Faculdade\9_Semestre\EngDeSoftware\Marketplace\api-marketplace\src\main\java\com\facens\apimarketplace\domain\objectvalue\Price.java
 D:\Estudo\Faculdade\9_Semestre\EngDeSoftware\Marketplace\api-marketplace\src\main\java\com\facens\apimarketplace\domain\entities\Stock.java
 D:\Estudo\Faculdade\9_Semestre\EngDeSoftware\Marketplace\api-marketplace\src\main\java\com\facens\apimarketplace\domain\factories\StockFatory.java
 D:\Estudo\Faculdade\9_Semestre\EngDeSoftware\Marketplace\api-marketplace\src\main\java\com\facens\apimarketplace\application\controller\ProductController.java

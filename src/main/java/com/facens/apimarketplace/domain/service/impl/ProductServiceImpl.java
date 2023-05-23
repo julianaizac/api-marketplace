@@ -57,10 +57,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public ProductDTO saveProduct(ProductInsertDTO productInsertDTO) {
-        // Valida se existe algum produto na base de dados com esse nome
         validateProduct(productInsertDTO.getName());
-
-        // Verifica se existe categoria
         CategoryDTO categoryDTO = categoryService.getCategoryById(productInsertDTO.getCategoryId());
 
         Stock stock = new Stock();

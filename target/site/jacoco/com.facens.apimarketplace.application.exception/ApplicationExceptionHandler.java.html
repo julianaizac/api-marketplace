@@ -11,14 +11,14 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity&lt;Object&gt; badRequestException(BadRequestException exception){
-<span class="nc" id="L14">        DefaultError error = new DefaultError(exception.getStatus().value(), exception.getMessage(), null);</span>
+<span class="nc" id="L14">        DefaultError error = new DefaultError(exception.getStatus().value(), exception.getMessage());</span>
 <span class="nc" id="L15">        return ResponseEntity.status(error.getStatus()).body(error);</span>
     }
 
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity&lt;Object&gt; exception(Exception exception){
-<span class="nc" id="L21">        DefaultError error = new DefaultError(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage(), null);</span>
+<span class="nc" id="L21">        DefaultError error = new DefaultError(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());</span>
 <span class="nc" id="L22">        return ResponseEntity.status(error.getStatus()).body(error);</span>
     }
 

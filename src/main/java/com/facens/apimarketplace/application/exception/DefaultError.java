@@ -10,6 +10,5 @@ public class DefaultError {
 
     private Integer status = HttpStatus.INTERNAL_SERVER_ERROR.value();
     private String message;
-    private String cause;
 
 }

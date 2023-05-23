@@ -5,6 +5,7 @@ import com.facens.apimarketplace.application.dto.product.ProductDTO;
 import com.facens.apimarketplace.application.dto.product.ProductInsertDTO;
 import com.facens.apimarketplace.application.dto.product.ProductUpdateDTO;
 import com.facens.apimarketplace.domain.entities.Product;
+import com.facens.apimarketplace.domain.objectvalue.Price;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +17,9 @@ public class ProductFatory {
         return Product.builder()
                 .name(productInsertDTO.getName())
                 .description(productInsertDTO.getDescription())
-                .price(productInsertDTO.getPrice())
+                .price(Price.builder()
+                        .price(productInsertDTO.getPrice())
+                        .build())
                 .creationDate(LocalDateTime.now())
                 .category(CategoryFatory.createFromCategoryDTO(categoryDTO))
                 .stock(null)
@@ -28,7 +31,13 @@ public class ProductFatory {
                 .id(productDTO.getId())
                 .name(nonNull(productUpdateDTO.getName()) ? productUpdateDTO.getName() : productDTO.getName())
                 .description(nonNull(productUpdateDTO.getDescription()) ? productUpdateDTO.getDescription() : productDTO.getDescription())
-                .price(nonNull(productUpdateDTO.getPrice()) ? productUpdateDTO.getPrice() : productDTO.getPrice())
+                .price(nonNull(productUpdateDTO.getPrice()) ?
+                        Price.builder()
+                            .price(productUpdateDTO.getPrice())
+                            .build() :
+                        Price.builder()
+                            .price(productDTO.getPrice())
+                            .build())
                 .category(CategoryFatory.createFromCategoryDTO(productDTO.getCategory()))
                 .stock(StockFatory.createFromStockDTO(productDTO.getStock()))
                 .build();
@@ -39,7 +48,7 @@ public class ProductFatory {
                 .id(product.getId())
                 .name(product.getName())
                 .description(product.getDescription())
-                .price(product.getPrice())
+                .price(product.getPrice().getPrice())
                 .creationDate(product.getCreationDate())
                 .category(CategoryFatory.createFromModel(product.getCategory()))
                 .stock(StockFatory.createFromModel(product.getStock()))

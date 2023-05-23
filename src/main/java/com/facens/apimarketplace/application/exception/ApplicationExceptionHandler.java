@@ -11,14 +11,14 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
 
     @ExceptionHandler(BadRequestException.class)
     public ResponseEntity<Object> badRequestException(BadRequestException exception){
-        DefaultError error = new DefaultError(exception.getStatus().value(), exception.getMessage(), null);
+        DefaultError error = new DefaultError(exception.getStatus().value(), exception.getMessage());
         return ResponseEntity.status(error.getStatus()).body(error);
     }
 
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> exception(Exception exception){
-        DefaultError error = new DefaultError(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage(), null);
+        DefaultError error = new DefaultError(HttpStatus.INTERNAL_SERVER_ERROR.value(), exception.getMessage());
         return ResponseEntity.status(error.getStatus()).body(error);
     }
 
