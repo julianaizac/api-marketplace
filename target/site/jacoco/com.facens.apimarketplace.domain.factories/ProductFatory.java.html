@@ -4,7 +4,7 @@ import com.facens.apimarketplace.application.dto.category.CategoryDTO;
 import com.facens.apimarketplace.application.dto.product.ProductDTO;
 import com.facens.apimarketplace.application.dto.product.ProductInsertDTO;
 import com.facens.apimarketplace.application.dto.product.ProductUpdateDTO;
-import com.facens.apimarketplace.domain.model.Product;
+import com.facens.apimarketplace.domain.entities.Product;
 
 import java.time.LocalDateTime;
 

@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.facens.apimarketplace.application.controller.CategoryControllerTest
 -------------------------------------------------------------------------------
-Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.236 s - in com.facens.apimarketplace.application.controller.CategoryControllerTest
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.235 s - in com.facens.apimarketplace.application.controller.CategoryControllerTest

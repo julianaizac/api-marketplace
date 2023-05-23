@@ -6,28 +6,24 @@ import com.facens.apimarketplace.application.dto.product.ProductInsertDTO;
 import com.facens.apimarketplace.application.dto.product.ProductUpdateDTO;
 import com.facens.apimarketplace.application.exception.BadRequestException;
 import com.facens.apimarketplace.domain.factories.ProductFatory;
-import com.facens.apimarketplace.domain.model.Product;
-import com.facens.apimarketplace.domain.model.Stock;
+import com.facens.apimarketplace.domain.entities.Product;
+import com.facens.apimarketplace.domain.entities.Stock;
 import com.facens.apimarketplace.domain.repository.ProductRepository;
 import com.facens.apimarketplace.domain.repository.StockRepository;
 import com.facens.apimarketplace.domain.service.CategoryService;
 import com.facens.apimarketplace.domain.service.ProductService;
-import com.facens.apimarketplace.domain.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
 @Service
-<span class="fc" id="L30">public class ProductServiceImpl implements ProductService {</span>
+<span class="fc" id="L26">public class ProductServiceImpl implements ProductService {</span>
 
     @Autowired
     private ProductRepository repository;
@@ -38,69 +34,69 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
     @Autowired
     private StockRepository stockRepository;
 
-<span class="fc" id="L41">    private String notFoundMessage = &quot;Não existe o produto na base de dados.&quot;;</span>
-<span class="fc" id="L42">    private String existingProductdMessage = &quot;Já existe um produto com esse nome na base de dados.&quot;;</span>
+<span class="fc" id="L37">    private String notFoundMessage = &quot;Não existe o produto na base de dados.&quot;;</span>
+<span class="fc" id="L38">    private String existingProductdMessage = &quot;Já existe um produto com esse nome na base de dados.&quot;;</span>
 
     @Override
     public List&lt;ProductDTO&gt; getProducts() {
-<span class="fc" id="L46">        List&lt;Product&gt; products = repository.findAll();</span>
-<span class="fc" id="L47">        return products.stream().map(ProductFatory::createFromModel).toList();</span>
+<span class="fc" id="L42">        List&lt;Product&gt; products = repository.findAll();</span>
+<span class="fc" id="L43">        return products.stream().map(ProductFatory::createFromModel).toList();</span>
     }
 
     @Override
     public ProductDTO getProductById(UUID id) {
-<span class="fc" id="L52">        Product product = repository.findById(id).orElseThrow(() -&gt; new BadRequestException(notFoundMessage, BAD_REQUEST));</span>
-<span class="fc" id="L53">        return ProductFatory.createFromModel(product);</span>
+<span class="fc" id="L48">        Product product = repository.findById(id).orElseThrow(() -&gt; new BadRequestException(notFoundMessage, BAD_REQUEST));</span>
+<span class="fc" id="L49">        return ProductFatory.createFromModel(product);</span>
     }
 
     @Override
     public ProductDTO getProductByName(String name) {
-<span class="fc" id="L58">        Optional&lt;Product&gt; product = repository.findByName(name);</span>
-<span class="fc" id="L59">        return product.map(ProductFatory::createFromModel).orElse(null);</span>
+<span class="fc" id="L54">        Optional&lt;Product&gt; product = repository.findByName(name);</span>
+<span class="fc" id="L55">        return product.map(ProductFatory::createFromModel).orElse(null);</span>
     }
 
     @Override
     public ProductDTO saveProduct(ProductInsertDTO productInsertDTO) {
         // Valida se existe algum produto na base de dados com esse nome
-<span class="fc" id="L65">        validateProduct(productInsertDTO.getName());</span>
+<span class="fc" id="L61">        validateProduct(productInsertDTO.getName());</span>
 
         // Verifica se existe categoria
-<span class="fc" id="L68">        CategoryDTO categoryDTO = categoryService.getCategoryById(productInsertDTO.getCategoryId());</span>
+<span class="fc" id="L64">        CategoryDTO categoryDTO = categoryService.getCategoryById(productInsertDTO.getCategoryId());</span>
 
-<span class="fc" id="L70">        Stock stock = new Stock();</span>
-<span class="fc" id="L71">        stock.setAmount(0);</span>
-<span class="fc" id="L72">        stock.setCreationDate(LocalDateTime.now());</span>
+<span class="fc" id="L66">        Stock stock = new Stock();</span>
+<span class="fc" id="L67">        stock.setAmount(0);</span>
+<span class="fc" id="L68">        stock.setCreationDate(LocalDateTime.now());</span>
 
-<span class="fc" id="L74">        Product product = ProductFatory.createFromInsertDTO(productInsertDTO, categoryDTO);</span>
+<span class="fc" id="L70">        Product product = ProductFatory.createFromInsertDTO(productInsertDTO, categoryDTO);</span>
 
-<span class="fc" id="L76">        stock.setProduct(product);</span>
-<span class="fc" id="L77">        product.setStock(stock);</span>
+<span class="fc" id="L72">        stock.setProduct(product);</span>
+<span class="fc" id="L73">        product.setStock(stock);</span>
 
-<span class="fc" id="L79">        Product productSave = repository.save(product);</span>
-<span class="fc" id="L80">        stockRepository.save(stock);</span>
+<span class="fc" id="L75">        Product productSave = repository.save(product);</span>
+<span class="fc" id="L76">        stockRepository.save(stock);</span>
 
-<span class="fc" id="L82">        return ProductFatory.createFromModel(productSave);</span>
+<span class="fc" id="L78">        return ProductFatory.createFromModel(productSave);</span>
     }
 
     @Override
     public ProductDTO updateProductById(UUID id, ProductUpdateDTO productUpdateDTO) {
-<span class="fc" id="L87">        ProductDTO existingProduct  = getProductById(id);</span>
-<span class="fc" id="L88">        Product product = ProductFatory.createFromUpdateDTO(productUpdateDTO, existingProduct);</span>
-<span class="fc" id="L89">        Product productSave = repository.save(product);</span>
-<span class="fc" id="L90">        return ProductFatory.createFromModel(productSave);</span>
+<span class="fc" id="L83">        ProductDTO existingProduct  = getProductById(id);</span>
+<span class="fc" id="L84">        Product product = ProductFatory.createFromUpdateDTO(productUpdateDTO, existingProduct);</span>
+<span class="fc" id="L85">        Product productSave = repository.save(product);</span>
+<span class="fc" id="L86">        return ProductFatory.createFromModel(productSave);</span>
     }
 
     @Override
     public void deleteProductById(UUID id) {
-<span class="fc" id="L95">        ProductDTO productDTO = getProductById(id);</span>
-<span class="fc" id="L96">        repository.deleteById(productDTO.getId());</span>
-<span class="fc" id="L97">    }</span>
+<span class="fc" id="L91">        ProductDTO productDTO = getProductById(id);</span>
+<span class="fc" id="L92">        repository.deleteById(productDTO.getId());</span>
+<span class="fc" id="L93">    }</span>
 
     public void validateProduct(String name){
-<span class="fc" id="L100">        ProductDTO existingProduct  = getProductByName(name);</span>
-<span class="pc bpc" id="L101" title="1 of 2 branches missed.">        if(existingProduct != null){</span>
-<span class="nc" id="L102">            throw new BadRequestException(existingProductdMessage, BAD_REQUEST);</span>
+<span class="fc" id="L96">        ProductDTO existingProduct  = getProductByName(name);</span>
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">        if(existingProduct != null){</span>
+<span class="nc" id="L98">            throw new BadRequestException(existingProductdMessage, BAD_REQUEST);</span>
         }
-<span class="fc" id="L104">    }</span>
+<span class="fc" id="L100">    }</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>

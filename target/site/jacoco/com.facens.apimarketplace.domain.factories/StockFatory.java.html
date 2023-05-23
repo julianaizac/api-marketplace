@@ -2,37 +2,35 @@
 
 import com.facens.apimarketplace.application.dto.stock.StockDTO;
 import com.facens.apimarketplace.application.dto.stock.StockUpdateDTO;
-import com.facens.apimarketplace.domain.model.Stock;
-
-import java.util.Objects;
+import com.facens.apimarketplace.domain.entities.Stock;
 
 import static java.util.Objects.nonNull;
 
-<span class="nc" id="L11">public class StockFatory {</span>
+<span class="nc" id="L9">public class StockFatory {</span>
     public static StockDTO createFromModel(Stock stock) {
 
-<span class="fc" id="L14">        return StockDTO.builder()</span>
-<span class="fc" id="L15">                .id(stock.getId())</span>
-<span class="fc" id="L16">                .amount(stock.getAmount())</span>
-<span class="fc" id="L17">                .creationDate(stock.getCreationDate())</span>
-<span class="fc" id="L18">                .build();</span>
+<span class="fc" id="L12">        return StockDTO.builder()</span>
+<span class="fc" id="L13">                .id(stock.getId())</span>
+<span class="fc" id="L14">                .amount(stock.getAmount())</span>
+<span class="fc" id="L15">                .creationDate(stock.getCreationDate())</span>
+<span class="fc" id="L16">                .build();</span>
 
     }
 
     public static Stock createFromModel(StockUpdateDTO stockUpdateDTO, StockDTO existingStock) {
-<span class="fc" id="L23">        return Stock.builder()</span>
-<span class="fc" id="L24">                .id(existingStock.getId())</span>
-<span class="pc bpc" id="L25" title="1 of 2 branches missed.">                .amount(nonNull(stockUpdateDTO.getAmount()) ? stockUpdateDTO.getAmount() : existingStock.getAmount())</span>
-<span class="fc" id="L26">                .creationDate(existingStock.getCreationDate())</span>
-<span class="fc" id="L27">                .build();</span>
+<span class="fc" id="L21">        return Stock.builder()</span>
+<span class="fc" id="L22">                .id(existingStock.getId())</span>
+<span class="pc bpc" id="L23" title="1 of 2 branches missed.">                .amount(nonNull(stockUpdateDTO.getAmount()) ? stockUpdateDTO.getAmount() : existingStock.getAmount())</span>
+<span class="fc" id="L24">                .creationDate(existingStock.getCreationDate())</span>
+<span class="fc" id="L25">                .build();</span>
     }
 
     public static Stock createFromStockDTO(StockDTO stock) {
-<span class="fc" id="L31">        return Stock.builder()</span>
-<span class="fc" id="L32">                .id(stock.getId())</span>
-<span class="fc" id="L33">                .amount(stock.getAmount())</span>
-<span class="fc" id="L34">                .creationDate(stock.getCreationDate())</span>
-<span class="fc" id="L35">                .build();</span>
+<span class="fc" id="L29">        return Stock.builder()</span>
+<span class="fc" id="L30">                .id(stock.getId())</span>
+<span class="fc" id="L31">                .amount(stock.getAmount())</span>
+<span class="fc" id="L32">                .creationDate(stock.getCreationDate())</span>
+<span class="fc" id="L33">                .build();</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
