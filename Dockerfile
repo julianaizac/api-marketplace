@@ -1,4 +1,4 @@
-FROM openjdk:17-jre
+FROM openjdk:11-jre
 WORKDIR /api-marketplace
 COPY target/*.jar /api-marketplace/api-marketplace-0.0.1-SNAPSHOT.jar
 EXPOSE 8080
