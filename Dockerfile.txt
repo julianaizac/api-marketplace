@@ -1,5 +1,0 @@
-FROM openjdk:17-jre
-WORKDIR /api-marketplace
-COPY target/*.war /api-marketplace/api-marketplace-0.0.1-SNAPSHOT
-EXPOSE 9090
-CMD java -XX:+UseContainerSupport -Xmx512m -Dserver.port=9090 -jar api-marketplace-0.0.1-SNAPSHOT.war 
