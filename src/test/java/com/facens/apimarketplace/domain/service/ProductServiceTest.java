@@ -2,17 +2,15 @@ package com.facens.apimarketplace.domain.service;
 
 import com.facens.apimarketplace.application.dto.product.ProductDTO;
 import com.facens.apimarketplace.application.exception.BadRequestException;
-import com.facens.apimarketplace.domain.repository.ProductRepository;
-import com.facens.apimarketplace.domain.repository.StockRepository;
+import com.facens.apimarketplace.infrastructure.repository.ProductRepository;
+import com.facens.apimarketplace.infrastructure.repository.StockRepository;
 import com.facens.apimarketplace.domain.service.impl.ProductServiceImpl;
 import com.facens.apimarketplace.mocks.MocksCategory;
 import com.facens.apimarketplace.mocks.MocksProduct;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.util.ReflectionTestUtils;
 

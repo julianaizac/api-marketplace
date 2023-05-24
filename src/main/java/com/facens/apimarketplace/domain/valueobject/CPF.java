@@ -1,4 +1,4 @@
-package com.facens.apimarketplace.domain.objectvalue;
+package com.facens.apimarketplace.domain.valueobject;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;

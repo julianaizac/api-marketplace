@@ -6,7 +6,7 @@ import com.facens.apimarketplace.application.dto.category.CategoryUpdateDTO;
 import com.facens.apimarketplace.application.exception.BadRequestException;
 import com.facens.apimarketplace.domain.factories.CategoryFactory;
 import com.facens.apimarketplace.domain.entities.Category;
-import com.facens.apimarketplace.domain.repository.CategoryRepository;
+import com.facens.apimarketplace.infrastructure.repository.CategoryRepository;
 import com.facens.apimarketplace.domain.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

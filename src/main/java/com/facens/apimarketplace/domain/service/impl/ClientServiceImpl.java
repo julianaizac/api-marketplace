@@ -4,7 +4,7 @@ import com.facens.apimarketplace.application.dto.client.ClientDTO;
 import com.facens.apimarketplace.application.dto.client.ClientInsertDTO;
 import com.facens.apimarketplace.domain.entities.Client;
 import com.facens.apimarketplace.domain.factories.ClientFactory;
-import com.facens.apimarketplace.domain.repository.ClientRepository;
+import com.facens.apimarketplace.infrastructure.repository.ClientRepository;
 import com.facens.apimarketplace.domain.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

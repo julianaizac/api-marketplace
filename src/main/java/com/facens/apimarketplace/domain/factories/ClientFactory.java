@@ -3,8 +3,8 @@ package com.facens.apimarketplace.domain.factories;
 import com.facens.apimarketplace.application.dto.client.ClientDTO;
 import com.facens.apimarketplace.application.dto.client.ClientInsertDTO;
 import com.facens.apimarketplace.domain.entities.Client;
-import com.facens.apimarketplace.domain.objectvalue.CPF;
-import com.facens.apimarketplace.domain.objectvalue.Email;
+import com.facens.apimarketplace.domain.valueobject.CPF;
+import com.facens.apimarketplace.domain.valueobject.Email;
 
 public class ClientFactory {
 

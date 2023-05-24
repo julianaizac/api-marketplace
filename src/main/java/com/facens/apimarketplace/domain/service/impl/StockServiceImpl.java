@@ -5,7 +5,7 @@ import com.facens.apimarketplace.application.dto.stock.StockUpdateDTO;
 import com.facens.apimarketplace.application.exception.BadRequestException;
 import com.facens.apimarketplace.domain.factories.StockFatory;
 import com.facens.apimarketplace.domain.entities.Stock;
-import com.facens.apimarketplace.domain.repository.StockRepository;
+import com.facens.apimarketplace.infrastructure.repository.StockRepository;
 import com.facens.apimarketplace.domain.service.StockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

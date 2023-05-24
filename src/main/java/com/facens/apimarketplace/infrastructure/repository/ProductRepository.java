@@ -1,4 +1,4 @@
-package com.facens.apimarketplace.domain.repository;
+package com.facens.apimarketplace.infrastructure.repository;
 
 import com.facens.apimarketplace.domain.entities.Product;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,10 +1,8 @@
 package com.facens.apimarketplace.domain.service;
 
-import com.facens.apimarketplace.application.dto.product.ProductDTO;
 import com.facens.apimarketplace.application.dto.stock.StockDTO;
-import com.facens.apimarketplace.domain.repository.StockRepository;
+import com.facens.apimarketplace.infrastructure.repository.StockRepository;
 import com.facens.apimarketplace.domain.service.impl.StockServiceImpl;
-import com.facens.apimarketplace.mocks.MocksProduct;
 import com.facens.apimarketplace.mocks.MocksStock;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -20,8 +18,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static com.facens.apimarketplace.mocks.MocksCategory.*;
-import static com.facens.apimarketplace.mocks.MocksProduct.*;
 import static com.facens.apimarketplace.mocks.MocksStock.STOCK_AMOUNT;
 import static com.facens.apimarketplace.mocks.MocksStock.STOCK_ID;
 import static org.junit.jupiter.api.Assertions.assertEquals;

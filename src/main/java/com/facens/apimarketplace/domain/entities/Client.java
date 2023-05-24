@@ -1,7 +1,7 @@
 package com.facens.apimarketplace.domain.entities;
 
-import com.facens.apimarketplace.domain.objectvalue.CPF;
-import com.facens.apimarketplace.domain.objectvalue.Email;
+import com.facens.apimarketplace.domain.valueobject.CPF;
+import com.facens.apimarketplace.domain.valueobject.Email;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;

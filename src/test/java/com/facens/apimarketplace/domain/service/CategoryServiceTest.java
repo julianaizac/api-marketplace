@@ -2,10 +2,9 @@ package com.facens.apimarketplace.domain.service;
 
 import com.facens.apimarketplace.application.dto.category.CategoryDTO;
 import com.facens.apimarketplace.application.exception.BadRequestException;
-import com.facens.apimarketplace.domain.repository.CategoryRepository;
+import com.facens.apimarketplace.infrastructure.repository.CategoryRepository;
 import com.facens.apimarketplace.domain.service.impl.CategoryServiceImpl;
 import com.facens.apimarketplace.mocks.MocksCategory;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
