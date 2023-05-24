@@ -1,6 +1,5 @@
 package com.facens.apimarketplace.domain.entities;
 
-import com.facens.apimarketplace.domain.objectvalue.Price;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
@@ -25,10 +24,7 @@ public class Product {
     private UUID id;
     private String name;
     private String description;
-
-    @Embedded
-    private Price price;
-    //private BigDecimal price;
+    private BigDecimal price;
     private LocalDateTime creationDate;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")

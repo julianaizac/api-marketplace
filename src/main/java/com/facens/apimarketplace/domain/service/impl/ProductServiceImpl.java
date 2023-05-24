@@ -5,7 +5,7 @@ import com.facens.apimarketplace.application.dto.product.ProductDTO;
 import com.facens.apimarketplace.application.dto.product.ProductInsertDTO;
 import com.facens.apimarketplace.application.dto.product.ProductUpdateDTO;
 import com.facens.apimarketplace.application.exception.BadRequestException;
-import com.facens.apimarketplace.domain.factories.ProductFatory;
+import com.facens.apimarketplace.domain.factories.ProductFactory;
 import com.facens.apimarketplace.domain.entities.Product;
 import com.facens.apimarketplace.domain.entities.Stock;
 import com.facens.apimarketplace.domain.repository.ProductRepository;
@@ -40,19 +40,19 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> getProducts() {
         List<Product> products = repository.findAll();
-        return products.stream().map(ProductFatory::createFromModel).toList();
+        return products.stream().map(ProductFactory::createFromModel).toList();
     }
 
     @Override
     public ProductDTO getProductById(UUID id) {
         Product product = repository.findById(id).orElseThrow(() -> new BadRequestException(notFoundMessage, BAD_REQUEST));
-        return ProductFatory.createFromModel(product);
+        return ProductFactory.createFromModel(product);
     }
 
     @Override
     public ProductDTO getProductByName(String name) {
         Optional<Product> product = repository.findByName(name);
-        return product.map(ProductFatory::createFromModel).orElse(null);
+        return product.map(ProductFactory::createFromModel).orElse(null);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
         stock.setAmount(0);
         stock.setCreationDate(LocalDateTime.now());
 
-        Product product = ProductFatory.createFromInsertDTO(productInsertDTO, categoryDTO);
+        Product product = ProductFactory.createFromInsertDTO(productInsertDTO, categoryDTO);
 
         stock.setProduct(product);
         product.setStock(stock);
@@ -72,15 +72,15 @@ public class ProductServiceImpl implements ProductService {
         Product productSave = repository.save(product);
         stockRepository.save(stock);
 
-        return ProductFatory.createFromModel(productSave);
+        return ProductFactory.createFromModel(productSave);
     }
 
     @Override
     public ProductDTO updateProductById(UUID id, ProductUpdateDTO productUpdateDTO) {
         ProductDTO existingProduct  = getProductById(id);
-        Product product = ProductFatory.createFromUpdateDTO(productUpdateDTO, existingProduct);
+        Product product = ProductFactory.createFromUpdateDTO(productUpdateDTO, existingProduct);
         Product productSave = repository.save(product);
-        return ProductFatory.createFromModel(productSave);
+        return ProductFactory.createFromModel(productSave);
     }
 
     @Override

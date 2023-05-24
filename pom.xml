@@ -95,6 +95,7 @@
 					<excludes>
 						<exclude>com/facens/apimarketplace/application/dto/**</exclude>
 						<exclude>com/facens/apimarketplace/domain/model/**</exclude>
+						<exclude>com/facens/apimarketplace/domain/entities/**</exclude>
 					</excludes>
 				</configuration>
 			</plugin>

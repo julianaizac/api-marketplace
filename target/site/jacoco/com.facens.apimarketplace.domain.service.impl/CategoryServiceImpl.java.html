@@ -4,7 +4,7 @@ import com.facens.apimarketplace.application.dto.category.CategoryDTO;
 import com.facens.apimarketplace.application.dto.category.CategoryInsertDTO;
 import com.facens.apimarketplace.application.dto.category.CategoryUpdateDTO;
 import com.facens.apimarketplace.application.exception.BadRequestException;
-import com.facens.apimarketplace.domain.factories.CategoryFatory;
+import com.facens.apimarketplace.domain.factories.CategoryFactory;
 import com.facens.apimarketplace.domain.entities.Category;
 import com.facens.apimarketplace.domain.repository.CategoryRepository;
 import com.facens.apimarketplace.domain.service.CategoryService;
@@ -29,35 +29,35 @@ import static org.springframework.http.HttpStatus.BAD_REQUEST;
     @Override
     public List&lt;CategoryDTO&gt; getCategories() {
 <span class="fc" id="L31">        List&lt;Category&gt; categories = repository.findAll();</span>
-<span class="fc" id="L32">        return categories.stream().map(CategoryFatory::createFromModel).toList();</span>
+<span class="fc" id="L32">        return categories.stream().map(CategoryFactory::createFromModel).toList();</span>
     }
 
     @Override
     public CategoryDTO getCategoryById(UUID id) {
 <span class="fc" id="L37">        Category category = repository.findById(id).orElseThrow(() -&gt; new BadRequestException(notFoundMessage, BAD_REQUEST));</span>
-<span class="fc" id="L38">        return CategoryFatory.createFromModel(category);</span>
+<span class="fc" id="L38">        return CategoryFactory.createFromModel(category);</span>
     }
 
     @Override
     public CategoryDTO getCategoryByName(String name) {
 <span class="fc" id="L43">        Optional&lt;Category&gt; category = repository.findByName(name);</span>
-<span class="fc" id="L44">        return category.map(CategoryFatory::createFromModel).orElse(null);</span>
+<span class="fc" id="L44">        return category.map(CategoryFactory::createFromModel).orElse(null);</span>
     }
 
     @Override
     public CategoryDTO saveCategory(CategoryInsertDTO categoryInsertDTO) {
 <span class="fc" id="L49">        validateProduct(categoryInsertDTO.getName());</span>
-<span class="fc" id="L50">        Category category = CategoryFatory.createFromInsertDTO(categoryInsertDTO);</span>
+<span class="fc" id="L50">        Category category = CategoryFactory.createFromInsertDTO(categoryInsertDTO);</span>
 <span class="fc" id="L51">        Category categorySave = repository.save(category);</span>
-<span class="fc" id="L52">        return CategoryFatory.createFromModel(categorySave);</span>
+<span class="fc" id="L52">        return CategoryFactory.createFromModel(categorySave);</span>
     }
 
     @Override
     public CategoryDTO updateCategoryById(UUID id, CategoryUpdateDTO categoryUpdateDTO) {
 <span class="fc" id="L57">        CategoryDTO existingCategory = getCategoryById(id);</span>
-<span class="fc" id="L58">        Category category = CategoryFatory.createCategoryUpdateDTO(categoryUpdateDTO, existingCategory);</span>
+<span class="fc" id="L58">        Category category = CategoryFactory.createCategoryUpdateDTO(categoryUpdateDTO, existingCategory);</span>
 <span class="fc" id="L59">        Category categorySave = repository.save(category);</span>
-<span class="fc" id="L60">        return CategoryFatory.createFromModel(categorySave);</span>
+<span class="fc" id="L60">        return CategoryFactory.createFromModel(categorySave);</span>
     }
 
     @Override

@@ -4,7 +4,7 @@ import com.facens.apimarketplace.application.dto.category.CategoryDTO;
 import com.facens.apimarketplace.application.dto.category.CategoryInsertDTO;
 import com.facens.apimarketplace.application.dto.category.CategoryUpdateDTO;
 import com.facens.apimarketplace.application.exception.BadRequestException;
-import com.facens.apimarketplace.domain.factories.CategoryFatory;
+import com.facens.apimarketplace.domain.factories.CategoryFactory;
 import com.facens.apimarketplace.domain.entities.Category;
 import com.facens.apimarketplace.domain.repository.CategoryRepository;
 import com.facens.apimarketplace.domain.service.CategoryService;
@@ -29,35 +29,35 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryDTO> getCategories() {
         List<Category> categories = repository.findAll();
-        return categories.stream().map(CategoryFatory::createFromModel).toList();
+        return categories.stream().map(CategoryFactory::createFromModel).toList();
     }
 
     @Override
     public CategoryDTO getCategoryById(UUID id) {
         Category category = repository.findById(id).orElseThrow(() -> new BadRequestException(notFoundMessage, BAD_REQUEST));
-        return CategoryFatory.createFromModel(category);
+        return CategoryFactory.createFromModel(category);
     }
 
     @Override
     public CategoryDTO getCategoryByName(String name) {
         Optional<Category> category = repository.findByName(name);
-        return category.map(CategoryFatory::createFromModel).orElse(null);
+        return category.map(CategoryFactory::createFromModel).orElse(null);
     }
 
     @Override
     public CategoryDTO saveCategory(CategoryInsertDTO categoryInsertDTO) {
         validateProduct(categoryInsertDTO.getName());
-        Category category = CategoryFatory.createFromInsertDTO(categoryInsertDTO);
+        Category category = CategoryFactory.createFromInsertDTO(categoryInsertDTO);
         Category categorySave = repository.save(category);
-        return CategoryFatory.createFromModel(categorySave);
+        return CategoryFactory.createFromModel(categorySave);
     }
 
     @Override
     public CategoryDTO updateCategoryById(UUID id, CategoryUpdateDTO categoryUpdateDTO) {
         CategoryDTO existingCategory = getCategoryById(id);
-        Category category = CategoryFatory.createCategoryUpdateDTO(categoryUpdateDTO, existingCategory);
+        Category category = CategoryFactory.createCategoryUpdateDTO(categoryUpdateDTO, existingCategory);
         Category categorySave = repository.save(category);
-        return CategoryFatory.createFromModel(categorySave);
+        return CategoryFactory.createFromModel(categorySave);
     }
 
     @Override

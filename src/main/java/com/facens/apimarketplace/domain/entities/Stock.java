@@ -1,5 +1,4 @@
 package com.facens.apimarketplace.domain.entities;
-
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.Hibernate;
