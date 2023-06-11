@@ -6,7 +6,7 @@ pipeline {
         bat '''
           docker version
           docker info
-          docker compose version 
+          docker compose version
           curl --version
           '''
       }
@@ -24,9 +24,9 @@ pipeline {
     }
     stage('Run tests against the container') {
       steps {
-        bat 'curl http://localhost:9090'
+        bat 'curl http://localhost:8180'
       }
     }
   }
-  
+
 }
