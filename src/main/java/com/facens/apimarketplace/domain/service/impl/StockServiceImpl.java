@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class StockServiceImpl implements StockService {
@@ -25,7 +26,7 @@ public class StockServiceImpl implements StockService {
     @Override
     public List<StockDTO> getStocks() {
         List<Stock> stocks = repository.findAll();
-        return stocks.stream().map(StockFatory::createFromModel).toList();
+        return stocks.stream().map(StockFatory::createFromModel).collect(Collectors.toList());
     }
 
     @Override

@@ -19,6 +19,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
@@ -40,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<ProductDTO> getProducts() {
         List<Product> products = repository.findAll();
-        return products.stream().map(ProductFactory::createFromModel).toList();
+        return products.stream().map(ProductFactory::createFromModel).collect(Collectors.toList());
     }
 
     @Override

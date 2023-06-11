@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static org.springframework.http.HttpStatus.BAD_REQUEST;
 
@@ -29,7 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public List<CategoryDTO> getCategories() {
         List<Category> categories = repository.findAll();
-        return categories.stream().map(CategoryFactory::createFromModel).toList();
+        return categories.stream().map(CategoryFactory::createFromModel).collect(Collectors.toList());
     }
 
     @Override
