@@ -26,6 +26,7 @@ public class Product {
     private String description;
     private BigDecimal price;
     private LocalDateTime creationDate;
+    private LocalDateTime lastModifieldDate;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;

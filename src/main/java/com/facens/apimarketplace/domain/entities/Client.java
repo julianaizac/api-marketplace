@@ -12,11 +12,11 @@ import java.util.UUID;
 @Getter
 @Setter
 @ToString
+@RequiredArgsConstructor
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "TB_CLIENT")
+@AllArgsConstructor
 public class Client {
 
     @Id
