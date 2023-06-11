@@ -10,5 +10,5 @@ services:
     volumes:
       - ./data:/var/lib/mysql
     ports:
-      - 3308:3308
+      - 9090:9090
     command: ["java", "-jar", "/app.jar"]
