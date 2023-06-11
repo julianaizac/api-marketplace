@@ -1,19 +1,14 @@
 version: '3'
-
 services:
-  database:
-    image: postgres
+  db:
+    image: mysql:latest
     environment:
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: dbmarketplace
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db_apimarketplace
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
     volumes:
-      - db-volume:/var/lib/postgresql/data
-
-  api:
-    image: julianaizac/marketplace
-    environment:
-      DB_HOST: database
+      - ./data:/var/lib/mysql
     ports:
-      - "9090:9090"
-volumes:
-  db-volume:
+      - 3306:3306
+    command: ["java", "-jar", "/app.jar"]
