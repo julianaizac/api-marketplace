@@ -10,7 +10,7 @@ services:
       - db-volume:/var/lib/postgresql/data
 
   api:
-    image: juliana/api-marketplace
+    image: juizac/marketplace
     environment:
       DB_HOST: database
     ports:
